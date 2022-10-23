@@ -44,7 +44,7 @@ const HomeBanner = () => {
               Quick Affordable And Certified Cell Phone Repair <br /> Service At
               Your Door.
             </Typography>
-            <Link style={{ textDecoration: "none" }} to="/home">
+            <Link style={{ textDecoration: "none" }} to="/appointment">
               <Button variant="contained" color="warning">
                 Repair My Phone
               </Button>

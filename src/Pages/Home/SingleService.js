@@ -1,7 +1,9 @@
-import { Grid, Paper, Typography } from "@mui/material";
+import { Button, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SingleService = ({ service }) => {
+  console.log(service);
   return (
     <Grid item xs={4} sm={4} md={3}>
       <Paper
@@ -10,17 +12,26 @@ const SingleService = ({ service }) => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          p:1
+          p: 1,
         }}
         elevation={3}
       >
         <img
           style={{ height: "210px", width: "200px", objectFit: "contain" }}
           src={service.image}
-          alt={service.name}
+          alt={service.serviceName}
         />
-        <Typography>{service.name}</Typography>
-        <Typography variant="caption" color='primary' sx={{py:1, textTransform: "uppercase"}}>Repair</Typography>
+        <Typography sx={{ textAlign: "center" }}>
+          {service.serviceName}
+        </Typography>
+        <Link
+          style={{ textDecoration: "none" }}
+          to={`/appointment/${service.serviceName}`}
+        >
+          <Button size="small" variant="text">
+            Repair
+          </Button>
+        </Link>
       </Paper>
     </Grid>
   );

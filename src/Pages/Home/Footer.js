@@ -57,26 +57,26 @@ const Footer = () => {
                   >
                     GMS
                   </Typography>
-                  <Typography color="#1873C6">DOCTORS</Typography>
+                  <Typography color="#07bdb5">DOCTORS</Typography>
                 </Box>
               </Box>
-                <Stack direction="row">
-                  <IconButton aria-label="facebook" size="small">
-                    <FacebookIcon color="primary" fontSize="small"/>
-                  </IconButton>
-                  <IconButton color="primary" size="small">
-                    <TwitterIcon fontSize="small"/>
-                  </IconButton>
-                  <IconButton color="primary" size="small">
-                    <InstagramIcon fontSize="small"/>
-                  </IconButton>
-                  <IconButton color="primary" size="small">
-                    <LinkedInIcon fontSize="small"/>
-                  </IconButton>
-                  <IconButton color="primary" size="small">
-                    <GoogleIcon fontSize="small"/>
-                  </IconButton>
-                </Stack>
+              <Stack direction="row">
+                <IconButton aria-label="facebook" size="small">
+                  <FacebookIcon color="primary" fontSize="small" />
+                </IconButton>
+                <IconButton color="primary" size="small">
+                  <TwitterIcon fontSize="small" />
+                </IconButton>
+                <IconButton color="primary" size="small">
+                  <InstagramIcon fontSize="small" />
+                </IconButton>
+                <IconButton color="primary" size="small">
+                  <LinkedInIcon fontSize="small" />
+                </IconButton>
+                <IconButton color="primary" size="small">
+                  <GoogleIcon fontSize="small" />
+                </IconButton>
+              </Stack>
             </Grid>
             <Grid item xs={6} sm={4} md={3}>
               <Typography variant="button" color="white">

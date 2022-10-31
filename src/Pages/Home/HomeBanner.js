@@ -41,10 +41,10 @@ const HomeBanner = () => {
               display="block"
               variant="p"
             >
-              Quick Affordable And Certified Cell Phone Repair <br /> Service At
+              Quick, Affordable And Certified Cell Phone Repair <br /> Service At
               Your Door.
             </Typography>
-            <Link style={{ textDecoration: "none" }} to="/appointment">
+            <Link style={{ textDecoration: "none" }} to="/appointment/Smart%20Phones">
               <Button variant="contained" color="warning">
                 Repair My Phone
               </Button>

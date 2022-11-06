@@ -35,7 +35,7 @@ function App() {
           <Route path="reviews" element={<Reviews />} />
         </Route>
         <Route
-          path="payment"
+          path="payment/:id"
           element={
             <RequireAuth>
               <Payment />

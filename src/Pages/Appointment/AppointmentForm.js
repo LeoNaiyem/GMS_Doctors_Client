@@ -14,11 +14,13 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
+import { useQuery } from "react-query";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase.init";
+import Loader from "../Shared/Loader";
 
-const AppointmentForm = () => {
+const AppointmentForm = ({ serviceNames }) => {
   const navigate = useNavigate();
   const { serviceName } = useParams();
   const [phoneNumber, setPhoneNumber] = useState();
@@ -27,7 +29,16 @@ const AppointmentForm = () => {
   const handleChange = (event) => {
     setService(event.target.value);
   };
-
+  const getData = async () => {
+    const res = await fetch(`http://localhost:5001/services/${serviceName}`);
+    return res.json();
+  };
+  const {
+    data: serviceInfo,
+    error,
+    isError,
+    isLoading,
+  } = useQuery(["serviceInfo", serviceName], getData);
   const currentDate = new Date();
   currentDate.setDate(currentDate.getDate() + 1);
   const nextDate = currentDate.toLocaleDateString();
@@ -43,24 +54,40 @@ const AppointmentForm = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    const apData = {
+      ...data,
+      paid:false,
+      service,
+      price: serviceInfo?.price,
+      providerName: serviceInfo?.providerName,
+      providerEmail: serviceInfo?.providerEmail,
+    };
     fetch("http://localhost:5001/appointments", {
       method: "POST",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify(apData),
     })
       .then((res) => res.json())
       .then((result) => {
         if (result.insertedId) {
           toast.success("Appointment booked successfully");
           reset();
-          navigate("/payment");
+          navigate(`/payment/${result.insertedId}`);
         } else {
           toast.error("Something went wrong");
         }
       });
-    console.log(data);
   };
 
+  if (isLoading) {
+    return <Loader />;
+  }
+  if (error) {
+    toast.error(error.message);
+  }
+  if (isError) {
+    toast.error(error.message);
+  }
   return (
     <Box sx={{ py: 3 }} component="section">
       <Typography sx={{ textAlign: "center" }} variant="h6">
@@ -151,11 +178,11 @@ const AppointmentForm = () => {
                   label="Service"
                   onChange={handleChange}
                 >
-                  <MenuItem value={"Smart Phones"}>Smart Phones</MenuItem>
-                  <MenuItem value={"Tablet & iPad"}>Tablet & iPad</MenuItem>
-                  <MenuItem value={"LCD & LED TV"}>LCD & LED TV</MenuItem>
-                  <MenuItem value={"Desktop & Mac"}>Desktop & Mac</MenuItem>
-                  <MenuItem value={"Came Console"}>Came Console</MenuItem>
+                  {serviceNames.map((name, index) => (
+                    <MenuItem key={index} value={name?.serviceName}>
+                      {name?.serviceName}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
               <TextField

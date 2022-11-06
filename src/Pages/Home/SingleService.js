@@ -3,7 +3,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const SingleService = ({ service }) => {
-  console.log(service);
   return (
     <Grid item xs={4} sm={4} md={3}>
       <Paper

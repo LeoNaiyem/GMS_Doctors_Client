@@ -3,14 +3,17 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Appointment from "./Pages/Appointment/Appointment";
+import ContactUs from "./Pages/ContactUs/ContactUs";
 import AddService from "./Pages/Dashboard/AddService";
 import AllServices from "./Pages/Dashboard/AllServices";
+import AllUsers from "./Pages/Dashboard/AllUsers";
 import Dashboard from "./Pages/Dashboard/Dashboard";
 import MyAppointments from "./Pages/Dashboard/MyAppointments";
 import Reviews from "./Pages/Dashboard/Reviews";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Login/Register";
+import RequireAdmin from "./Pages/Login/RequireAdmin";
 import RequireAuth from "./Pages/Login/RequireAuth";
 import Payment from "./Pages/Payment/Payment";
 import NotFound from "./Pages/Shared/NotFound";
@@ -30,9 +33,31 @@ function App() {
           }
         >
           <Route index element={<MyAppointments />} />
-          <Route path="services" element={<AllServices />} />
-          <Route path="addService" element={<AddService />} />
           <Route path="reviews" element={<Reviews />} />
+          <Route
+            path="services"
+            element={
+              <RequireAdmin>
+                <AllServices />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="addService"
+            element={
+              <RequireAdmin>
+                <AddService />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="users"
+            element={
+              <RequireAdmin>
+                <AllUsers />
+              </RequireAdmin>
+            }
+          />
         </Route>
         <Route
           path="payment/:id"
@@ -50,6 +75,7 @@ function App() {
             </RequireAuth>
           }
         />
+        <Route path="contact" element={<ContactUs />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="*" element={<NotFound />} />

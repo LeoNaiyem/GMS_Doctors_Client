@@ -1,14 +1,14 @@
 import {
-  Box,
-  Button,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography
+    Box,
+    Button,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography
 } from "@mui/material";
 import { signOut } from "firebase/auth";
 import React from "react";
@@ -19,7 +19,7 @@ import { toast } from "react-toastify";
 import bgImage from "../../assets/images/download.jpg";
 import auth from "../../firebase.init";
 import Loader from "../Shared/Loader";
-import AppointmentsRow from "./AppointmentsRow";
+import AllUsersRow from "./AllUsersRow";
 
 const bg = {
   backgroundImage: `url(${bgImage})`,
@@ -34,19 +34,16 @@ const bg = {
   position: "relative",
 };
 
-const MyAppointments = () => {
+const AllUsers = () => {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
   const getData = async () => {
-    const res = await fetch(
-      `http://localhost:5001/appointments?email=${user.email}`,
-      {
-        method: "GET",
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        },
-      }
-    );
+    const res = await fetch(`http://localhost:5001/users`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
+    });
     if (res.status === 401 || res.status === 403) {
       signOut(auth);
       localStorage.removeItem("accessToken");
@@ -55,12 +52,12 @@ const MyAppointments = () => {
     return res.json();
   };
   const {
-    data: appointments,
+    data: users,
     error,
     isError,
     isLoading,
     refetch,
-  } = useQuery(["appointments", user.email], getData);
+  } = useQuery(["users", user.email], getData);
 
   if (isLoading) {
     return <Loader />;
@@ -79,12 +76,12 @@ const MyAppointments = () => {
             sx={{ fontWeight: 700, color: "white", position: "relative" }}
             variant="h4"
           >
-            My Appointments
+            All Users
           </Typography>
         </Box>
       </Box>
       <Box sx={{ py: 3, px: 5 }} component="section">
-        {appointments?.length === 0 ? (
+        {users?.length === 0 ? (
           <Box
             sx={{
               display: "flex",
@@ -108,28 +105,16 @@ const MyAppointments = () => {
         ) : (
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead sx={{ backgroundColor: "green" }}>
+              <TableHead sx={{ backgroundColor: "#9c27b0" }}>
                 <TableRow>
                   <TableCell sx={{ color: "white" }} align="center">
                     Index
                   </TableCell>
-                  <TableCell sx={{ color: "white" }} align="center">
-                    Name
+                  <TableCell sx={{ color: "white" }} align="left">
+                    Email
                   </TableCell>
                   <TableCell sx={{ color: "white" }} align="center">
-                    Date
-                  </TableCell>
-                  <TableCell sx={{ color: "white" }} align="center">
-                    Service
-                  </TableCell>
-                  <TableCell sx={{ color: "white" }} align="center">
-                    Model
-                  </TableCell>
-                  <TableCell sx={{ color: "white" }} align="center">
-                    Price
-                  </TableCell>
-                  <TableCell sx={{ color: "white" }} align="center">
-                    Payment
+                    Action
                   </TableCell>
                   <TableCell sx={{ color: "white" }} align="center">
                     Action
@@ -137,8 +122,8 @@ const MyAppointments = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {appointments.map((ap, index) => (
-                  <AppointmentsRow key={ap._id} ap={ap} refetch={refetch} index={index} />
+                {users.map((user, index) => (
+                  <AllUsersRow key={user._id} user={user} refetch={refetch} index={index} />
                 ))}
               </TableBody>
             </Table>
@@ -149,4 +134,4 @@ const MyAppointments = () => {
   );
 };
 
-export default MyAppointments;
+export default AllUsers;

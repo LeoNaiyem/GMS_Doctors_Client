@@ -1,8 +1,9 @@
-import AddBoxIcon from '@mui/icons-material/AddBox';
+import AddBoxIcon from "@mui/icons-material/AddBox";
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import GroupIcon from "@mui/icons-material/Group";
 import HomeIcon from "@mui/icons-material/Home";
-import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
+import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
 import MenuIcon from "@mui/icons-material/Menu";
 import ReviewsIcon from "@mui/icons-material/Reviews";
 import AppBar from "@mui/material/AppBar";
@@ -19,12 +20,17 @@ import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, Outlet } from "react-router-dom";
 import logo from "../../assets/images/setting.png";
+import auth from "../../firebase.init";
+import useAdmin from "../../hooks/useAdmin";
 
 const drawerWidth = 240;
 
 const Dashboard = (props) => {
+  const [user] = useAuthState(auth);
+  const [admin] = useAdmin(user);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -32,28 +38,44 @@ const Dashboard = (props) => {
     setMobileOpen(!mobileOpen);
   };
   const navItems = [
-    { name: "Home", link: "/home", icon: <HomeIcon color="primary" /> },
+    {
+      name: "Home",
+      admin: false,
+      link: "/home",
+      icon: <HomeIcon color="primary" />,
+    },
     {
       name: "My Appointments",
       link: "/dashboard",
+      admin: false,
       icon: <AssignmentTurnedInIcon color="primary" />,
     },
     {
       name: "My Reviews",
+      admin: false,
       link: "/dashboard/reviews",
       icon: <ReviewsIcon color="primary" />,
     },
     {
       name: "All Services",
+      admin: true,
       link: "/dashboard/services",
       icon: <HomeRepairServiceIcon color="primary" />,
     },
     {
       name: "Add Service",
+      admin: true,
       link: "/dashboard/addService",
       icon: <AddBoxIcon color="primary" />,
     },
+    {
+      name: "All Users",
+      admin: true,
+      link: "/dashboard/users",
+      icon: <GroupIcon color="primary" />,
+    },
   ];
+  const navItemsToShow = navItems.filter((item) => item.admin === admin);
   const drawer = (
     <div>
       <Toolbar>
@@ -67,26 +89,34 @@ const Dashboard = (props) => {
           <Box>
             <img style={{ height: "45px" }} src={logo} alt="logo" />
           </Box>
-          <Box sx={{ ml: -1, mt: 2, }}>
-            <Typography
-              sx={{
-                lineHeight: "10px",
-                fontWeight: 700,
-                color: "#1976d2"
-              }}
-            >
-              GMS
-            </Typography>
-            <Typography sx={{fontSize: "14px"}} color="#07bdb5">DOCTORS</Typography>
-          </Box>
+          <Link style={{ textDecoration: "none" }} to="/home">
+            <Box sx={{ ml: -1, mt: 2 }}>
+              <Typography
+                sx={{
+                  lineHeight: "10px",
+                  fontWeight: 700,
+                  color: "#1976d2",
+                }}
+              >
+                GMS
+              </Typography>
+              <Typography sx={{ fontSize: "14px" }} color="#07bdb5">
+                DOCTORS
+              </Typography>
+            </Box>
+          </Link>
         </Box>
       </Toolbar>
       <Divider />
       <List>
-        {navItems.map((item, index) => (
+        {navItemsToShow.map((item, index) => (
           <ListItem key={index} disablePadding>
             <Link
-              style={{width: '100%', textDecoration: "none", color: "#1976d2" }}
+              style={{
+                width: "100%",
+                textDecoration: "none",
+                color: "#1976d2",
+              }}
               to={item.link}
             >
               <ListItemButton sx={{}}>

@@ -11,7 +11,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import { signOut } from 'firebase/auth';
+import { signOut } from "firebase/auth";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
@@ -28,6 +28,11 @@ const Navigation = (props) => {
   const [user] = useAuthState(auth);
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const handleLogOut = () => {
+    signOut(auth);
+    localStorage.removeItem("accessToken");
+  };
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -89,7 +94,7 @@ const Navigation = (props) => {
                 color="secondary"
                 size="small"
                 variant="outlined"
-                onClick={()=> signOut(auth)}
+                onClick={handleLogOut}
               >
                 Logout
               </Button>

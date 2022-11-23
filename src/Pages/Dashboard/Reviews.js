@@ -1,18 +1,20 @@
 import {
-    Box,
-    Button,
-    Paper,
-    Table,
-    TableBody,
-    TableCell,
-    TableContainer,
-    TableHead,
-    TableRow,
-    Typography
+  Box,
+  Button,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography
 } from "@mui/material";
+import { signOut } from "firebase/auth";
 import React from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import bgImage from "../../assets/images/download.jpg";
 import auth from "../../firebase.init";
@@ -33,10 +35,22 @@ const bg = {
 
 const Reviews = () => {
   const [user] = useAuthState(auth);
+  const navigate = useNavigate();
   const getData = async () => {
     const res = await fetch(
-      `http://localhost:5001/appointments?email=${user.email}`
+      `http://localhost:5001/appointments?email=${user.email}`,
+      {
+        method: "GET",
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        },
+      }
     );
+    if (res.status === 401 || res.status === 403) {
+      signOut(auth);
+      localStorage.removeItem("accessToken");
+      navigate("/home");
+    }
     return res.json();
   };
   const {
@@ -91,7 +105,11 @@ const Reviews = () => {
       </Box>
       <Box sx={{ py: 3, px: 5 }} component="section">
         {appointments.length === 0 ? (
-          <Typography sx={{ mt: 4, textAlign: "center", fontWeight:500}} variant="h5" color="secondary">
+          <Typography
+            sx={{ mt: 4, textAlign: "center", fontWeight: 500 }}
+            variant="h5"
+            color="secondary"
+          >
             You haven't given any review yet.
           </Typography>
         ) : (

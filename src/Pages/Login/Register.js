@@ -4,7 +4,7 @@ import Sheet from "@mui/joy/Sheet";
 import { CssVarsProvider } from "@mui/joy/styles";
 import TextField from "@mui/joy/TextField";
 import { Divider, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   useCreateUserWithEmailAndPassword,
   useSignInWithGoogle,
@@ -13,6 +13,7 @@ import {
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import auth from "../../firebase.init";
+import useToken from "../../hooks/useToken";
 import Loader from "../Shared/Loader";
 
 const Register = () => {
@@ -28,6 +29,7 @@ const Register = () => {
   } = useForm();
   let signInError;
   const navigate = useNavigate();
+  const [token] = useToken(user || gUser);
   // const location = useLocation();
   // let from = location.state?.from?.pathname || "/home";
 
@@ -42,9 +44,6 @@ const Register = () => {
     await updateProfile({ displayName: name });
     reset();
   };
-  if (loading || gLoading || updating) {
-    return <Loader />;
-  }
   if (error || gError || updateError) {
     signInError = (
       <Typography fontSize="13px" color="red" variant="caption" role="alert">
@@ -52,10 +51,15 @@ const Register = () => {
       </Typography>
     );
   }
-  if (user || gUser) {
-    console.log(user || gUser);
-    // navigate(from, { replace: true });
-    navigate("/dashboard");
+
+  useEffect(() => {
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [token, navigate]);
+
+  if (loading || gLoading || updating) {
+    return <Loader />;
   }
   return (
     <CssVarsProvider>

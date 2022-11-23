@@ -3,7 +3,6 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import Loader from "../Shared/Loader";
 
 const CheckoutForm = ({ appointment }) => {
   const navigate = useNavigate();
@@ -12,12 +11,10 @@ const CheckoutForm = ({ appointment }) => {
   const [cardError, setCardError] = useState("");
   const [transactionId, setTransactionId] = useState("");
   const [success, setSuccess] = useState(false);
-  const [processing, setProcessing] = useState(false);
   const { id } = useParams();
   const [clientSecret, setClientSecret] = useState("");
 
-  const { _id, name, email, providerEmail } = appointment;
-  console.log(name, email, providerEmail);
+  const { _id, name, email } = appointment;
   useEffect(() => {
     fetch("http://localhost:5001/create-payment-intent", {
       method: "POST",
@@ -37,14 +34,8 @@ const CheckoutForm = ({ appointment }) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
-      // Stripe.js has not loaded yet. Make sure to disable
-      // form submission until Stripe.js has loaded.
       return;
     }
-
-    // Get a reference to a mounted CardElement. Elements knows how
-    // to find your CardElement because there can only ever be one of
-    // each type of element.
     const card = elements.getElement(CardElement);
 
     if (card == null) {
@@ -64,7 +55,6 @@ const CheckoutForm = ({ appointment }) => {
       setCardError("");
       console.log("[PaymentMethod]", paymentMethod);
     }
-    setProcessing(true);
     //confirm payment
     const { paymentIntent, error: intendError } =
       await stripe.confirmCardPayment(clientSecret, {
@@ -78,7 +68,6 @@ const CheckoutForm = ({ appointment }) => {
       });
     if (intendError) {
       setCardError(intendError?.message);
-      setProcessing(false);
     } else {
       setCardError("");
       toast.success("Congress! Payment is successful");
@@ -102,16 +91,12 @@ const CheckoutForm = ({ appointment }) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.modifiedCount === 1) {
-            setProcessing(false);
-            navigate("/dashboard")
+            navigate("/dashboard");
           }
         });
     }
   };
 
-  if (processing) {
-    return <Loader />;
-  }
   return (
     <Box
       sx={{

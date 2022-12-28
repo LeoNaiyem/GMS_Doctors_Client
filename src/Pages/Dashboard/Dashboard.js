@@ -1,4 +1,5 @@
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import AddCommentIcon from '@mui/icons-material/AddComment';
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import GroupIcon from "@mui/icons-material/Group";
@@ -55,6 +56,12 @@ const Dashboard = (props) => {
       admin: false,
       link: "/dashboard/reviews",
       icon: <ReviewsIcon color="primary" />,
+    },
+    {
+      name: "Give Reviews",
+      admin: false,
+      link: "/dashboard/giveReview",
+      icon: <AddCommentIcon color="primary" />,
     },
     {
       name: "All Services",

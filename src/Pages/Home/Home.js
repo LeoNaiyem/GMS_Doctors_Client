@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import FooterBanner from "./FooterBanner";
 import Gallery from "./Gallery";
 import HomeBanner from "./HomeBanner";
+import ReviewSlider from "./ReviewSlider";
 import Services from "./Services";
 import Testimonials from "./Testimonials";
 
@@ -20,6 +21,7 @@ const Home = () => {
       <AboutUsBanner />
       <Gallery />
       <Testimonials />
+      <ReviewSlider/>
       <FooterBanner />
       <Footer />
     </>

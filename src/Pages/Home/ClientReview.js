@@ -2,7 +2,7 @@ import { Avatar, Box, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
 
 const ClientReview = ({ review }) => {
-  const { name, image, opinion, profession } = review;
+  const { name, img, opinion, profession } = review;
   return (
     <Grid item xs={2} sm={4} md={4}>
       <Paper
@@ -34,7 +34,7 @@ const ClientReview = ({ review }) => {
       </Paper>
       <Box sx={{ display: "flex", gap: "1rem", mt: 4, pl: 1 }}>
         <Box>
-          <Avatar alt={name} src={image} sx={{ width: 50, height: 50 }} />
+          <Avatar alt={name} src={img} sx={{ width: 50, height: 50 }} />
         </Box>
         <Box>
           <Typography component="div" variant="button" color="#002984">

@@ -38,7 +38,7 @@ const Reviews = () => {
   const navigate = useNavigate();
   const getData = async () => {
     const res = await fetch(
-      `http://localhost:5001/appointments?email=${user.email}`,
+      `http://localhost:5001/reviews/user?email=${user.email}`,
       {
         method: "GET",
         headers: {
@@ -54,19 +54,19 @@ const Reviews = () => {
     return res.json();
   };
   const {
-    data: appointments,
+    data: reviews,
     error,
     isError,
     isLoading,
     refetch,
-  } = useQuery("appointments", getData);
+  } = useQuery("reviews", getData);
 
   const handleApCancel = (id) => {
     const confirmed = window.confirm("Are you sure you want to cancel");
     if (!confirmed) {
       return;
     }
-    const url = `http://localhost:5001/appointments/${id}`;
+    const url = `http://localhost:5001/reviews/${id}`;
     fetch(url, {
       method: "DELETE",
       headers: { "content-Type": "application/json" },
@@ -104,7 +104,7 @@ const Reviews = () => {
         </Box>
       </Box>
       <Box sx={{ py: 3, px: 5 }} component="section">
-        {appointments.length === 0 ? (
+        {reviews.length === 0 ? (
           <Typography
             sx={{ mt: 4, textAlign: "center", fontWeight: 500 }}
             variant="h5"
@@ -141,7 +141,7 @@ const Reviews = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {appointments.map((ap, index) => (
+                {reviews.map((ap, index) => (
                   <TableRow
                     key={ap._id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

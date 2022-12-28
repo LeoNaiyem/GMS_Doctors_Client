@@ -8,6 +8,7 @@ import AddService from "./Pages/Dashboard/AddService";
 import AllServices from "./Pages/Dashboard/AllServices";
 import AllUsers from "./Pages/Dashboard/AllUsers";
 import Dashboard from "./Pages/Dashboard/Dashboard";
+import GiveReview from "./Pages/Dashboard/GiveReview";
 import MyAppointments from "./Pages/Dashboard/MyAppointments";
 import Reviews from "./Pages/Dashboard/Reviews";
 import Home from "./Pages/Home/Home";
@@ -34,6 +35,7 @@ function App() {
         >
           <Route index element={<MyAppointments />} />
           <Route path="reviews" element={<Reviews />} />
+          <Route path="giveReview" element={<GiveReview />} />
           <Route
             path="services"
             element={

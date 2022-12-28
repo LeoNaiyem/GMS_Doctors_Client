@@ -1,40 +1,63 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
-import business_women from "../../assets/images/client-business_women.jpg";
-import business_man from "../../assets/images/client_businessman.jpg";
-import dr from "../../assets/images/client_dr.jpg";
+import { useQuery } from "react-query";
+import { toast } from "react-toastify";
+// import business_women from "../../assets/images/client-business_women.jpg";
+// import business_man from "../../assets/images/client_businessman.jpg";
+// import dr from "../../assets/images/client_dr.jpg";
+import Loader from "../Shared/Loader";
 import ClientReview from "./ClientReview";
 
-const reviews = [
-  {
-    id: 1,
-    name: "Naiyema Hossain",
-    email: "naiyema@hossain.com",
-    image: business_women,
-    opinion:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, sequi!",
-    profession: "Business Women",
-  },
-  {
-    id: 2,
-    name: "Dr. Sara",
-    email: "dr@sara.com",
-    image: dr,
-    opinion:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, sequi!",
-    profession: "Doctor",
-  },
-  {
-    id: 3,
-    name: "Muhammad",
-    email: "muhammad@gmail.com",
-    image: business_man,
-    opinion:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, sequi!",
-    profession: "Business Man",
-  },
-];
+// const reviews = [
+//   {
+//     id: 1,
+//     name: "Naiyema Hossain",
+//     email: "naiyema@hossain.com",
+//     image: business_women,
+//     opinion:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, sequi!",
+//     profession: "Business Women",
+//   },
+//   {
+//     id: 2,
+//     name: "Dr. Sara",
+//     email: "dr@sara.com",
+//     image: dr,
+//     opinion:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, sequi!",
+//     profession: "Doctor",
+//   },
+//   {
+//     id: 3,
+//     name: "Muhammad",
+//     email: "muhammad@gmail.com",
+//     image: business_man,
+//     opinion:
+//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, sequi!",
+//     profession: "Business Man",
+//   },
+// ];
 const Testimonials = () => {
+  const getData = async () => {
+    const res = await fetch(`http://localhost:5001/reviews`);
+    return res.json();
+  };
+  const {
+    data: allReviews,
+    error,
+    isError,
+    isLoading,
+  } = useQuery(["allReviews"], getData);
+  
+  if (isLoading) {
+    return <Loader />;
+  }
+  if (error) {
+    toast.error(error.message);
+  }
+  if (isError) {
+    toast.error(error.message);
+  }
   return (
     <Box sx={{ py: 5, backgroundColor: "#F5BFBF", position: "relative" }} component="section">
       <Box sx={{ minHeight: "40vh" }}>
@@ -61,8 +84,8 @@ const Testimonials = () => {
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
-              {reviews.map((review) => (
-                <ClientReview key={review.id} review={review} />
+              {allReviews.map((review) => (
+                <ClientReview key={review._id} review={review} />
               ))}
             </Grid>
           </Box>

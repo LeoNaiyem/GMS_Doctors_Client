@@ -24,12 +24,6 @@ const Payment = () => {
     isError,
     isLoading,
   } = useQuery(["appointments", id], getData);
-
-  // const options = {
-  //   // passing the client secret obtained from the server
-  //   clientSecret: "{{CLIENT_SECRET}}",
-  // };
-
   if (isLoading) {
     return <Loader />;
   }

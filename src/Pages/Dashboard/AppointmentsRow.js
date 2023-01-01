@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const AppointmentsRow = ({ ap, index, refetch }) => {
-  const { _id, name, date, service, model, price, paid } = ap;
+  const { _id, name, date, service, model, price, paid, status, transactionId } = ap;
 
   const handleApCancel = (id) => {
     const confirmed = window.confirm("Are you sure you want to cancel");
@@ -53,6 +53,10 @@ const AppointmentsRow = ({ ap, index, refetch }) => {
           </Link>
         )}
       </TableCell>
+      <TableCell align="left">{transactionId}</TableCell>
+      <TableCell sx={{textTransform:"capitalize"}} align="center">
+        {status}
+      </TableCell>
       <TableCell align="center">
         <Button
           onClick={() => handleApCancel(_id)}
@@ -63,7 +67,7 @@ const AppointmentsRow = ({ ap, index, refetch }) => {
         >
           Cancel
         </Button>
-      </TableCell>
+      </TableCell>      
     </TableRow>
   );
 };

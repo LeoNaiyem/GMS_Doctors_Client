@@ -1,7 +1,7 @@
-import { Box, Button, Grid, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const CheckoutForm = ({ appointment }) => {
@@ -14,7 +14,7 @@ const CheckoutForm = ({ appointment }) => {
   const { id } = useParams();
   const [clientSecret, setClientSecret] = useState("");
 
-  const { _id, name, email } = appointment;
+  const { _id, name, email, price, service, date } = appointment;
   useEffect(() => {
     fetch("http://localhost:5001/create-payment-intent", {
       method: "POST",
@@ -108,24 +108,41 @@ const CheckoutForm = ({ appointment }) => {
     >
       <Grid sx={{ width: "60%" }} container spacing={3}>
         <Grid item xs={12} md={6}>
-          <Box
+          <Paper
+            elevation={3}
             sx={{
-              backgroundColor: "skyBlue",
-              color: "royalBlue",
+              backgroundColor: "lightblue",
               height: "100%",
               py: 1,
               px: 3,
               borderRadius: "10px",
             }}
           >
-            <Typography variant="h6"> Please Pay For : {id} </Typography>
-          </Box>
+            <Typography variant="h6">
+              Hello Mr. <span style={{ color: "purple" }}>{name}</span>
+            </Typography>
+            <Typography variant="subtitle2">
+              Your Appointment Date :{" "}
+              <span style={{ color: "purple" }}>{date}</span>
+            </Typography>
+            <Typography variant="subtitle2">
+              Please Pay For : <span style={{ color: "purple" }}>{service}</span>{" "}
+              Servicing{" "}
+            </Typography>
+            <Typography variant="subtitle2">
+              ID : <span style={{ color: "purple" }}>{id}</span>{" "}
+            </Typography>{" "}
+            <Typography variant="subtitle2">
+              Pay : <span style={{ color: "purple" }}>${price}</span> to confirm
+              your appointment
+            </Typography>
+          </Paper>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Box
+          <Paper
+            elevation={3}
             sx={{
-              backgroundColor: "yellowGreen",
-              color: "white",
+              backgroundColor: "#ccfffd",
               height: "100%",
               py: 1,
               px: 3,
@@ -180,8 +197,11 @@ const CheckoutForm = ({ appointment }) => {
                 {cardError}
               </Typography>
             )}
-          </Box>
+          </Paper>
         </Grid>
+        <Link style={{textDecoration:"none", margin:"50px auto"}} to="/dashboard">
+          <Button variant="contained" color="secondary">Pay Later</Button>{" "}
+        </Link>
       </Grid>
     </Box>
   );

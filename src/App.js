@@ -5,6 +5,7 @@ import "./App.css";
 import Appointment from "./Pages/Appointment/Appointment";
 import ContactUs from "./Pages/ContactUs/ContactUs";
 import AddService from "./Pages/Dashboard/AddService";
+import AllAppointments from "./Pages/Dashboard/AllAppointments";
 import AllServices from "./Pages/Dashboard/AllServices";
 import AllUsers from "./Pages/Dashboard/AllUsers";
 import Dashboard from "./Pages/Dashboard/Dashboard";
@@ -57,6 +58,14 @@ function App() {
             element={
               <RequireAdmin>
                 <AllUsers />
+              </RequireAdmin>
+            }
+          />
+          <Route
+            path="allAppointments"
+            element={
+              <RequireAdmin>
+                <AllAppointments />
               </RequireAdmin>
             }
           />

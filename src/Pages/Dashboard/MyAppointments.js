@@ -132,8 +132,14 @@ const MyAppointments = () => {
                     Payment
                   </TableCell>
                   <TableCell sx={{ color: "white" }} align="center">
-                    Action
+                    Tans ID
                   </TableCell>
+                  <TableCell sx={{ color: "white" }} align="center">
+                    Status
+                  </TableCell>
+                  <TableCell sx={{ color: "white" }} align="center">
+                    Action
+                  </TableCell>                  
                 </TableRow>
               </TableHead>
               <TableBody>

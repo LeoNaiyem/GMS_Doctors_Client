@@ -33,7 +33,7 @@ const NotFound = () => {
           Page Not Found !
         </Typography>
         <Link style={{ textDecoration: "none" }} to="/home">
-          <Button variant="contained" color="success">Back to Home</Button>
+          <Button variant="contained" color="success">Go Home</Button>
         </Link>
       </Box>
     </Box>

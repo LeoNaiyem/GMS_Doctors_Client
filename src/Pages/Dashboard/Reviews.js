@@ -126,14 +126,8 @@ const Reviews = () => {
                   <TableCell sx={{ color: "white" }} align="center">
                     Name
                   </TableCell>
-                  <TableCell sx={{ color: "white" }} align="center">
-                    Date
-                  </TableCell>
-                  <TableCell sx={{ color: "white" }} align="center">
-                    Service
-                  </TableCell>
-                  <TableCell sx={{ color: "white" }} align="center">
-                    Model
+                  <TableCell sx={{ color: "white" }} align="left">
+                    Opinion
                   </TableCell>
                   <TableCell sx={{ color: "white" }} align="center">
                     Action
@@ -141,25 +135,23 @@ const Reviews = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {reviews.map((ap, index) => (
+                {reviews.map((review, index) => (
                   <TableRow
-                    key={ap._id}
+                    key={review._id}
                     sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                   >
                     <TableCell align="center">{index + 1}</TableCell>
-                    <TableCell align="center">{ap.email}</TableCell>
-                    <TableCell align="center">{ap.name}</TableCell>
-                    <TableCell align="center">{ap.date}</TableCell>
-                    <TableCell align="center">{ap.service}</TableCell>
-                    <TableCell align="center">{ap.model}</TableCell>
+                    <TableCell align="center">{review.email}</TableCell>
+                    <TableCell align="center">{review.name}</TableCell>
+                    <TableCell align="left">{review.opinion}</TableCell>
                     <TableCell align="center">
                       <Button
-                        onClick={() => handleApCancel(ap._id)}
+                        onClick={() => handleApCancel(review._id)}
                         variant="outlined"
                         size="small"
                         color="error"
                       >
-                        Cancel
+                        Delete
                       </Button>
                     </TableCell>
                   </TableRow>

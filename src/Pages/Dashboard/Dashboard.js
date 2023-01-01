@@ -1,6 +1,7 @@
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
+import BallotIcon from '@mui/icons-material/Ballot';
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import GroupIcon from "@mui/icons-material/Group";
 import HomeIcon from "@mui/icons-material/Home";
@@ -80,6 +81,12 @@ const Dashboard = (props) => {
       admin: true,
       link: "/dashboard/users",
       icon: <GroupIcon color="primary" />,
+    },
+    {
+      name: "All Appointments",
+      admin: true,
+      link: "/dashboard/allAppointments",
+      icon: <BallotIcon color="primary" />,
     },
   ];
   const navItemsToShow = navItems.filter((item) => item.admin === admin);

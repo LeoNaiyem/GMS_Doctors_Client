@@ -1,31 +1,23 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
+import under_construction from "../../assets/images/under_construction.jpg";
 
 const ContactUs = () => {
-  const role = "user";
-  const array = [
-    { name: "Home", rq: "user" },
-    { name: "Dashboard", rq: "admin" },
-    { name: "payment", rq: "user" },
-    { name: "Reviews", rq: "admin" },
-  ];
-  const adminRoutes = array.filter((route) => route.rq === role);
   return (
     <Box
       sx={{
         display: "flex",
         justifyContent: "center",
+        flexDirection: "column",
         alignItems: "center",
         minHeight: "100vh",
       }}
     >
-      <h1>Contact Us</h1>
-
-      <ul>
-        {adminRoutes.map((item, index) => (
-          <li key={index}>{item.name}</li>
-        ))}
-      </ul>
+      <img style={{borderRadius:"10px"}} src={under_construction} alt="under construction" />
+      <Link style={{textDecoration:"none", margin:"20px auto"}} to="/home">
+          <Button variant="contained" color="success">Go Home</Button>{" "}
+        </Link>
     </Box>
   );
 };

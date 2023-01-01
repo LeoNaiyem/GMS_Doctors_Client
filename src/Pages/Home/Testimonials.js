@@ -1,42 +1,13 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Avatar, Box, Paper, Typography } from "@mui/material";
 import React from "react";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
-// import business_women from "../../assets/images/client-business_women.jpg";
-// import business_man from "../../assets/images/client_businessman.jpg";
-// import dr from "../../assets/images/client_dr.jpg";
+import { Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from "swiper/react";
 import Loader from "../Shared/Loader";
-import ClientReview from "./ClientReview";
 
-// const reviews = [
-//   {
-//     id: 1,
-//     name: "Naiyema Hossain",
-//     email: "naiyema@hossain.com",
-//     image: business_women,
-//     opinion:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, sequi!",
-//     profession: "Business Women",
-//   },
-//   {
-//     id: 2,
-//     name: "Dr. Sara",
-//     email: "dr@sara.com",
-//     image: dr,
-//     opinion:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, sequi!",
-//     profession: "Doctor",
-//   },
-//   {
-//     id: 3,
-//     name: "Muhammad",
-//     email: "muhammad@gmail.com",
-//     image: business_man,
-//     opinion:
-//       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, sequi!",
-//     profession: "Business Man",
-//   },
-// ];
 const Testimonials = () => {
   const getData = async () => {
     const res = await fetch(`http://localhost:5001/reviews`);
@@ -48,7 +19,7 @@ const Testimonials = () => {
     isError,
     isLoading,
   } = useQuery(["allReviews"], getData);
-  
+
   if (isLoading) {
     return <Loader />;
   }
@@ -59,7 +30,10 @@ const Testimonials = () => {
     toast.error(error.message);
   }
   return (
-    <Box sx={{ py: 5, backgroundColor: "#F5BFBF", position: "relative" }} component="section">
+    <Box
+      sx={{ py: 5, backgroundColor: "#F5BFBF", position: "relative" }}
+      component="section"
+    >
       <Box sx={{ minHeight: "40vh" }}>
         <Typography sx={{ textAlign: "center" }} color="#ee7600" variant="h6">
           OUR TESTIMONIALS
@@ -77,17 +51,94 @@ const Testimonials = () => {
             }}
           ></Box>
         </Box>
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Box sx={{ width: "80%", pt: 3, pb: 2, mt: 3 }}>
-            <Grid
-              container
-              spacing={{ xs: 2, md: 3 }}
-              columns={{ xs: 4, sm: 8, md: 12 }}
-            >
-              {allReviews.map((review) => (
-                <ClientReview key={review._id} review={review} />
-              ))}
-            </Grid>
+        <Box
+          sx={{ py: 5, backgroundColor: "#F5BFBF", position: "relative" }}
+          component="section"
+        >
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Box sx={{ width: "80%", pt: 3, pb: 2, mt: 3 }}>
+              <Swiper
+                slidesPerView={3}
+                spaceBetween={30}
+                pagination={{
+                  clickable: true,
+                }}
+                modules={[Pagination]}
+                className="mySwiper"
+              >
+                {allReviews.map((review) => {
+                  return (
+                    <SwiperSlide key={review._id}>
+                      <Paper
+                        sx={{
+                          position: "relative",
+                          padding: "1rem 1.5rem",
+                          textAlign: "center",
+                        }}
+                        elevation={3}
+                      >
+                        <Typography
+                          sx={{
+                            textAlign: "center",
+                            fontSize: "40px",
+                            fontWeight: 900,
+                            mb: 0,
+                            pb: 0,
+                            fontFamily: "roboto",
+                          }}
+                          variant="p"
+                          color="#ee7600"
+                          display="block"
+                        >
+                          “
+                        </Typography>
+                        <Typography variant="p" color="text.secondary">
+                          <span style={{ fontWeight: 500, color: "#002984" }}>
+                            GMS Doctors,
+                          </span> {review.opinion}
+                        </Typography>
+                        <Box
+                          sx={{
+                            position: "absolute",
+                            height: "20px",
+                            width: "20px",
+                            bottom: -10,
+                            left: 30,
+                            transform: "rotate(45deg)",
+                            backgroundColor: "rgba(255,255,255,0.9)",
+                          }}
+                        ></Box>
+                      </Paper>
+                      <Box sx={{ display: "flex", gap: "1rem", mt: 4, pl: 1 }}>
+                        <Box>
+                          <Avatar
+                            alt={review.name}
+                            src={review.img}
+                            sx={{ width: 50, height: 50 }}
+                          />
+                        </Box>
+                        <Box>
+                          <Typography
+                            component="div"
+                            variant="button"
+                            color="#002984"
+                          >
+                            {review.name}
+                          </Typography>
+                          <Typography
+                            variant="subtitle2"
+                            color="text.secondary"
+                            component="div"
+                          >
+                            {review.profession}
+                          </Typography>
+                        </Box>
+                      </Box>
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </Box>
           </Box>
         </Box>
       </Box>

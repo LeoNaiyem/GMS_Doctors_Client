@@ -3,42 +3,9 @@ import React from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import desktop from "../../assets/images/desktop.jpg";
-import game from "../../assets/images/game console.jpg";
-import phone from "../../assets/images/phones.jpg";
-import tablet from "../../assets/images/tablet.jpg";
-import tv from "../../assets/images/tv.jpg";
 import Loader from "../Shared/Loader";
 import SingleService from "./SingleService";
 
-const demoServices = [
-  {
-    id: 1,
-    name: "Tablet & iPad",
-    image: tablet,
-  },
-  {
-    id: 2,
-    name: "Smart Phones",
-    image: phone,
-  },
-  {
-    id: 3,
-    name: "Desktop & Mac",
-    image: desktop,
-  },
-  {
-    id: 4,
-    name: "Came Console",
-    image: game,
-  },
-  {
-    id: 5,
-    name: "LCD & LED TV",
-    image: tv,
-  },
-];
-console.log(demoServices)
 const Services = () => {
   const getData = async () => {
     const res = await fetch("http://localhost:5001/services");

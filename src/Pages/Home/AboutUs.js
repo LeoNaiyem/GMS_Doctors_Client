@@ -6,6 +6,7 @@ import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
 import WalletIcon from "@mui/icons-material/Wallet";
 import { Box, Container, Grid, Typography } from "@mui/material";
 import React from "react";
+import { Slide } from "react-awesome-reveal";
 import Specialty from "./Specialty";
 
 const specialties = [
@@ -44,6 +45,7 @@ const AboutUs = () => {
   return (
     <Container sx={{ py: 3 }}>
       <Box component="section">
+      <Slide cascade >
         <Typography sx={{ textAlign: "center" }} color="#ee7600" variant="h6">
           ABOUT US
         </Typography>
@@ -60,6 +62,7 @@ const AboutUs = () => {
             }}
           ></Box>
         </Box>
+        </Slide>
       </Box>
       <Box sx={{display: "flex", justifyContent: "center"}}>
         <Box sx={{width:"80%", pt: 3, pb: 2, mt: 3 }}>

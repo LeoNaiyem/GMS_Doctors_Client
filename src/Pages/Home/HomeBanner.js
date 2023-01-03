@@ -7,6 +7,7 @@ import {
   Typography
 } from "@mui/material";
 import React from "react";
+import { Slide } from "react-awesome-reveal";
 import { Link } from "react-router-dom";
 import home_banner from "../../assets/images/home_banner.jpg";
 
@@ -27,6 +28,7 @@ const HomeBanner = () => {
           columns={{ xs: 4, sm: 8, md: 12 }}
         >
           <Grid sx={{ px: 5 }} item xs={2} sm={4} md={6}>
+            <Slide direction="left">
             <Typography sx={{ fontWeight: 700 }} variant="h3">
               What Can I Fix For <br /> You Today!
             </Typography>
@@ -49,13 +51,17 @@ const HomeBanner = () => {
                 Repair My Phone
               </Button>
             </Link>
+            </Slide>
           </Grid>
           <Grid sx={{marginLeft:'30px'}} item xs={2} sm={4} md={4}>
+            <Slide direction="right">
+
             <img
               style={{ height: "350px", borderRadius: "10px" }}
               src={home_banner}
               alt="banner"
             />
+            </Slide>
           </Grid>
         </Grid>
       </Box>

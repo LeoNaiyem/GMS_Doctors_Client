@@ -1,5 +1,6 @@
 import { Box, Container, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
+import { Slide } from "react-awesome-reveal";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -11,10 +12,15 @@ const Services = () => {
     const res = await fetch("http://localhost:5001/services");
     return res.json();
   };
-  const { data:services, error, isError, isLoading } = useQuery("users", getData);
+  const {
+    data: services,
+    error,
+    isError,
+    isLoading,
+  } = useQuery("users", getData);
 
   if (isLoading) {
-    return <Loader/>
+    return <Loader />;
   }
   if (error) {
     toast.error(error.message);
@@ -25,22 +31,24 @@ const Services = () => {
   return (
     <Container sx={{ py: 3 }}>
       <Box component="section">
-        <Typography sx={{ textAlign: "center" }} color="#ee7600" variant="h6">
-          CHOOSE THE BEST
-        </Typography>
-        <Typography sx={{ textAlign: "center" }} variant="h4">
-          OUR SERVICES
-        </Typography>
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Box
-            sx={{
-              backgroundColor: "#ee7600",
-              width: "80px",
-              height: "3px",
-              borderRadius: "10px",
-            }}
-          ></Box>
-        </Box>
+        <Slide cascade delay={1000}>
+          <Typography sx={{ textAlign: "center" }} color="#ee7600" variant="h6">
+            CHOOSE THE BEST
+          </Typography>
+          <Typography sx={{ textAlign: "center" }} variant="h4">
+            OUR SERVICES
+          </Typography>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Box
+              sx={{
+                backgroundColor: "#ee7600",
+                width: "80px",
+                height: "3px",
+                borderRadius: "10px",
+              }}
+            ></Box>
+          </Box>
+        </Slide>
       </Box>
       <Box sx={{ pt: 5, pb: 2, mt: 5 }}>
         <Grid

@@ -1,5 +1,6 @@
 import { Avatar, Box, Paper, Typography } from "@mui/material";
 import React from "react";
+import { Slide } from "react-awesome-reveal";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 import { Pagination } from "swiper";
@@ -35,6 +36,7 @@ const Testimonials = () => {
       component="section"
     >
       <Box sx={{ minHeight: "40vh" }}>
+      <Slide cascade>
         <Typography sx={{ textAlign: "center" }} color="#ee7600" variant="h6">
           OUR TESTIMONIALS
         </Typography>
@@ -51,6 +53,7 @@ const Testimonials = () => {
             }}
           ></Box>
         </Box>
+        </Slide>
         <Box
           sx={{ py: 5, backgroundColor: "#F5BFBF", position: "relative" }}
           component="section"

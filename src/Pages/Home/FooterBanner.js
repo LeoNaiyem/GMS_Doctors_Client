@@ -1,5 +1,6 @@
 import { Box, Grid, Typography } from "@mui/material";
 import React from "react";
+import { AttentionSeeker, Fade } from "react-awesome-reveal";
 import customer_care from "../../assets/images/customer_care.jpg";
 import telephone from "../../assets/images/telephone.jpg";
 
@@ -36,23 +37,28 @@ const FooterBanner = () => {
               >
                 Do you want to repair you phone?
               </Typography>
+
               <Typography
-                sx={{ fontSize: "50px", fontWeight: 900, my:1 }}
+                sx={{ fontSize: "50px", fontWeight: 900, my: 1 }}
                 variant="h4"
                 color="#1873C6"
               >
-                +06-256569481
+                <Fade cascade damping={0.4}>
+                  +06-256569481
+                </Fade>
               </Typography>
               <Typography variant="p" color="text.secondary">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 Molestias temporibus odio cum optio dolores rerum?
               </Typography>
               <Box>
-                <img
-                  style={{ height: "100px" }}
-                  src={telephone}
-                  alt="telephone"
-                />
+                <AttentionSeeker effect="heartBeat" delay={6000}>
+                  <img
+                    style={{ height: "100px" }}
+                    src={telephone}
+                    alt="telephone"
+                  />
+                </AttentionSeeker>
               </Box>
             </Grid>
           </Grid>

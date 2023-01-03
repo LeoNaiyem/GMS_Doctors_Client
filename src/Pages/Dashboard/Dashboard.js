@@ -59,7 +59,7 @@ const Dashboard = (props) => {
       icon: <ReviewsIcon color="primary" />,
     },
     {
-      name: "Give Reviews",
+      name: "Give Review",
       admin: false,
       link: "/dashboard/giveReview",
       icon: <AddCommentIcon color="primary" />,

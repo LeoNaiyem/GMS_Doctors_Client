@@ -1,5 +1,6 @@
 import { Box, Grid, List, ListItem, Typography } from "@mui/material";
 import React from "react";
+import { Fade } from "react-awesome-reveal";
 import banner from "../../assets/images/about_banner.jpg";
 // import bgImage from "../../assets/images/customer_care.jpg";
 
@@ -61,6 +62,7 @@ const AboutUsBanner = () => {
             <nav aria-label="device fix return">
               <List>
                 <ListItem disablePadding>
+                <Fade direction="up">
                   <Typography
                     sx={{ fontSize: "20px", fontWeight: 400 }}
                     variant="h6"
@@ -78,8 +80,10 @@ const AboutUsBanner = () => {
                     </span>{" "}
                     Broken Device
                   </Typography>
+                  </Fade>
                 </ListItem>
                 <ListItem disablePadding>
+                <Fade direction="up" delay={1000}>
                   <Typography
                     sx={{ fontSize: "20px", fontWeight: 400 }}
                     variant="h6"
@@ -97,8 +101,10 @@ const AboutUsBanner = () => {
                     </span>{" "}
                     Send it to US
                   </Typography>
+                  </Fade>
                 </ListItem>
                 <ListItem disablePadding>
+                <Fade direction="up" delay={2000}>
                   <Typography
                     sx={{ fontSize: "20px", fontWeight: 400 }}
                     variant="h6"
@@ -116,8 +122,10 @@ const AboutUsBanner = () => {
                     </span>{" "}
                     Quick fix
                   </Typography>
+                  </Fade>
                 </ListItem>
                 <ListItem disablePadding>
+                <Fade direction="up" delay={3000}>
                   <Typography
                     sx={{ fontSize: "20px", fontWeight: 400 }}
                     variant="h6"
@@ -135,6 +143,7 @@ const AboutUsBanner = () => {
                     </span>{" "}
                     Fast Return
                   </Typography>
+                  </Fade>
                 </ListItem>
               </List>
             </nav>

@@ -38,7 +38,7 @@ const AllUsers = () => {
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
   const getData = async () => {
-    const res = await fetch(`http://localhost:5001/users`, {
+    const res = await fetch(`https://gms-doctors-server.vercel.app/users`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,

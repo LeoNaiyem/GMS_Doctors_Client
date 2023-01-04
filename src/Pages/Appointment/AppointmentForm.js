@@ -1,13 +1,13 @@
 import {
-  Box,
-  Button,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-  Typography
+    Box,
+    Button,
+    FormControl,
+    Grid,
+    InputLabel,
+    MenuItem,
+    Select,
+    TextField,
+    Typography
 } from "@mui/material";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -30,7 +30,7 @@ const AppointmentForm = ({ serviceNames }) => {
     setService(event.target.value);
   };
   const getData = async () => {
-    const res = await fetch(`http://localhost:5001/services/${serviceName}`);
+    const res = await fetch(`https://gms-doctors-server.vercel.app/services/${serviceName}`);
     return res.json();
   };
   const {
@@ -62,7 +62,7 @@ const AppointmentForm = ({ serviceNames }) => {
       providerName: serviceInfo?.providerName,
       providerEmail: serviceInfo?.providerEmail,
     };
-    fetch("http://localhost:5001/appointments", {
+    fetch("https://gms-doctors-server.vercel.app/appointments", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(apData),

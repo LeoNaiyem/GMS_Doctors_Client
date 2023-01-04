@@ -10,7 +10,7 @@ const useToken = (user) => {
       photo: user?.user?.photoURL,
     };
     if (email) {
-      fetch(`http://localhost:5001/users/${email}`, {
+      fetch(`https://gms-doctors-server.vercel.app/users/${email}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

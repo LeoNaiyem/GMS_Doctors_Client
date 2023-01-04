@@ -16,7 +16,7 @@ const CheckoutForm = ({ appointment }) => {
 
   const { _id, name, email, price, service, date } = appointment;
   useEffect(() => {
-    fetch("http://localhost:5001/create-payment-intent", {
+    fetch("https://gms-doctors-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(appointment),
@@ -81,7 +81,7 @@ const CheckoutForm = ({ appointment }) => {
         customerName: name,
         providerEmail: email,
       };
-      fetch(`http://localhost:5001/appointments/${_id}`, {
+      fetch(`https://gms-doctors-server.vercel.app/appointments/${_id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

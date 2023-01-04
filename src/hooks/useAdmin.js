@@ -8,7 +8,7 @@ const useAdmin = (user) => {
 
   useEffect(() => {
     const email = user?.email;
-    const url = `http://localhost:5001/admin/${email}`;
+    const url = `https://gms-doctors-server.vercel.app/admin/${email}`;
     fetch(url, {
       method: "GET",
       headers: {

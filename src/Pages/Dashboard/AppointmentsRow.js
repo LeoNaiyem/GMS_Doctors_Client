@@ -11,7 +11,7 @@ const AppointmentsRow = ({ ap, index, refetch }) => {
     if (!confirmed) {
       return;
     }
-    const url = `http://localhost:5001/appointments/${id}`;
+    const url = `https://gms-doctors-server.vercel.app/appointments/${id}`;
     fetch(url, {
       method: "DELETE",
       headers: { "content-Type": "application/json" },

@@ -1,13 +1,13 @@
 import {
-  Box,
-  Button,
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
-  Typography
+    Box,
+    Button,
+    FormControl,
+    Grid,
+    InputLabel,
+    MenuItem,
+    Select,
+    TextField,
+    Typography
 } from "@mui/material";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -70,7 +70,7 @@ const AddService = () => {
             image: imgUrl,
           };
           //sending data to the server
-          fetch("http://localhost:5001/services", {
+          fetch("https://gms-doctors-server.vercel.app/services", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

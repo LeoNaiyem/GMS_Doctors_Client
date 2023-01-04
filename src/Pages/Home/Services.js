@@ -9,7 +9,7 @@ import SingleService from "./SingleService";
 
 const Services = () => {
   const getData = async () => {
-    const res = await fetch("http://localhost:5001/services");
+    const res = await fetch("https://gms-doctors-server.vercel.app/services");
     return res.json();
   };
   const {

@@ -1,14 +1,14 @@
 import {
-  Box,
-  Button,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography
+    Box,
+    Button,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography
 } from "@mui/material";
 import { signOut } from "firebase/auth";
 import React from "react";
@@ -39,7 +39,7 @@ import AllAppointmentsRow from "./AllAppointmentsRow";
     const [user] = useAuthState(auth);
     const getData = async () => {
       const res = await fetch(
-        `http://localhost:5001/allAppointments?email=${user.email}`,
+        `https://gms-doctors-server.vercel.app/allAppointments?email=${user.email}`,
         {
           method: "GET",
           headers: {

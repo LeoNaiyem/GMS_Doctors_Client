@@ -8,7 +8,7 @@ import AppointmentForm from "./AppointmentForm";
 
 const Appointment = () => {
   const getData = async () => {
-    const res = await fetch(`http://localhost:5001/services/names`);
+    const res = await fetch(`https://gms-doctors-server.vercel.app/services/names`);
     return res.json();
   };
   const {

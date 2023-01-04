@@ -1,14 +1,14 @@
 import {
-  Box,
-  Button,
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Typography
+    Box,
+    Button,
+    Paper,
+    Table,
+    TableBody,
+    TableCell,
+    TableContainer,
+    TableHead,
+    TableRow,
+    Typography
 } from "@mui/material";
 import { signOut } from "firebase/auth";
 import React from "react";
@@ -38,7 +38,7 @@ const Reviews = () => {
   const navigate = useNavigate();
   const getData = async () => {
     const res = await fetch(
-      `http://localhost:5001/reviews/user?email=${user.email}`,
+      `https://gms-doctors-server.vercel.app/reviews/user?email=${user.email}`,
       {
         method: "GET",
         headers: {
@@ -66,7 +66,7 @@ const Reviews = () => {
     if (!confirmed) {
       return;
     }
-    const url = `http://localhost:5001/reviews/${id}`;
+    const url = `https://gms-doctors-server.vercel.app/reviews/${id}`;
     fetch(url, {
       method: "DELETE",
       headers: { "content-Type": "application/json" },

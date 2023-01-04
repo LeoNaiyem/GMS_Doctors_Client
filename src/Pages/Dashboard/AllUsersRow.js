@@ -10,7 +10,7 @@ const AllUsersRow = ({ user, index, refetch }) => {
     if (!confirmed) {
       return;
     }
-    const url = `http://localhost:5001/users/admin/${email}`;
+    const url = `https://gms-doctors-server.vercel.app/users/admin/${email}`;
     fetch(url, {
       method: "PUT",
       headers: {
@@ -37,7 +37,7 @@ const AllUsersRow = ({ user, index, refetch }) => {
     if (!confirmed) {
       return;
     }
-    const url = `http://localhost:5001/users/${id}`;
+    const url = `https://gms-doctors-server.vercel.app/users/${id}`;
     fetch(url, {
       method: "DELETE",
       headers: { "content-Type": "application/json" },

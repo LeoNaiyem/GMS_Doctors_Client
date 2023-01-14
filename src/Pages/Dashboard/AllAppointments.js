@@ -39,7 +39,7 @@ import AllAppointmentsRow from "./AllAppointmentsRow";
     const [user] = useAuthState(auth);
     const getData = async () => {
       const res = await fetch(
-        `https://gms-doctors-server.vercel.app/allAppointments?email=${user.email}`,
+        `https://gms-doctors-server.onrender.com/allAppointments?email=${user.email}`,
         {
           method: "GET",
           headers: {

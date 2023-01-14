@@ -27,7 +27,7 @@ const bg = {
 };
 const AllServices = () => {
   const getData = async () => {
-    const res = await fetch("https://gms-doctors-server.vercel.app/services");
+    const res = await fetch("https://gms-doctors-server.onrender.com/services");
     return res.json();
   };
 
@@ -44,7 +44,7 @@ const AllServices = () => {
     if (!confirmed) {
         return;
     }
-    const url = `https://gms-doctors-server.vercel.app/services/${id}`;
+    const url = `https://gms-doctors-server.onrender.com/services/${id}`;
     fetch(url, {
       method: "DELETE",
       headers: { "content-Type": "application/json" },

@@ -38,7 +38,7 @@ const Reviews = () => {
   const navigate = useNavigate();
   const getData = async () => {
     const res = await fetch(
-      `https://gms-doctors-server.vercel.app/reviews/user?email=${user.email}`,
+      `https://gms-doctors-server.onrender.com/reviews/user?email=${user.email}`,
       {
         method: "GET",
         headers: {
@@ -66,7 +66,7 @@ const Reviews = () => {
     if (!confirmed) {
       return;
     }
-    const url = `https://gms-doctors-server.vercel.app/reviews/${id}`;
+    const url = `https://gms-doctors-server.onrender.com/reviews/${id}`;
     fetch(url, {
       method: "DELETE",
       headers: { "content-Type": "application/json" },

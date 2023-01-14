@@ -37,7 +37,7 @@ const GiveReview = () => {
         img: user?.photoURL,
     }
     console.log(reviewDetails);
-    fetch("https://gms-doctors-server.vercel.app/reviews", {
+    fetch("https://gms-doctors-server.onrender.com/reviews", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify(reviewDetails),

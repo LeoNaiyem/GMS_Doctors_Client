@@ -39,7 +39,7 @@ const MyAppointments = () => {
   const [user] = useAuthState(auth);
   const getData = async () => {
     const res = await fetch(
-      `https://gms-doctors-server.vercel.app/appointments?email=${user.email}`,
+      `https://gms-doctors-server.onrender.com/appointments?email=${user.email}`,
       {
         method: "GET",
         headers: {

@@ -14,7 +14,7 @@ const Payment = () => {
   const { id } = useParams();
   const getData = async () => {
     const res = await fetch(
-      `https://gms-doctors-server.vercel.app/appointments/${id}`
+      `https://gms-doctors-server.onrender.com/appointments/${id}`
     );
     return res.json();
   };

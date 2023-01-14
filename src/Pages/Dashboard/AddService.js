@@ -70,7 +70,7 @@ const AddService = () => {
             image: imgUrl,
           };
           //sending data to the server
-          fetch("https://gms-doctors-server.vercel.app/services", {
+          fetch("https://gms-doctors-server.onrender.com/services", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

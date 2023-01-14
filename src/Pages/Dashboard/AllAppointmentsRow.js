@@ -17,7 +17,7 @@ const AllAppointmentsRow = ({ ap, index, refetch }) => {
     setAppointmentStatus(event.target.value);
     const apStatus = event.target.value;
     const apStatusObj = {status: apStatus}
-    const url = `https://gms-doctors-server.vercel.app/allAppointments/${_id}`;
+    const url = `https://gms-doctors-server.onrender.com/allAppointments/${_id}`;
     fetch(url, {
       method: "PUT",
       headers: { "content-Type": "application/json" },
@@ -39,7 +39,7 @@ const AllAppointmentsRow = ({ ap, index, refetch }) => {
     if (!confirmed) {
       return;
     }
-    const url = `https://gms-doctors-server.vercel.app/appointments/${id}`;
+    const url = `https://gms-doctors-server.onrender.com/appointments/${id}`;
     fetch(url, {
       method: "DELETE",
       headers: { "content-Type": "application/json" },

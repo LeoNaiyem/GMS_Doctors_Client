@@ -11,7 +11,7 @@ import Loader from "../Shared/Loader";
 
 const Testimonials = () => {
   const getData = async () => {
-    const res = await fetch(`https://gms-doctors-server.vercel.app/reviews`);
+    const res = await fetch(`https://gms-doctors-server.onrender.com/reviews`);
     return res.json();
   };
   const {
